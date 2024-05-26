@@ -6,15 +6,10 @@ $config = require 'config.php';
 $db = new Database($config['database']);
 $currentUser = 3;
 
-$note = $db->query("SELECT * FROM notes WHERE id = :id", ["id" => $_GET['id']])->fetch();
+$note = $db->query("SELECT * FROM notes WHERE id = :id", ["id" => $_GET['id']])->findOrFail();
 
-if (!$note) {
-    abort();
-}
+authorize($note['user_id'] === $currentUser);
 
-if ($note['user_id'] !== $currentUser) {
-    abort(Response::FORBIDDEN);
-}
 
 
 require 'views/note.view.php';
