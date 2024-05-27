@@ -7,10 +7,15 @@
         <?php foreach ($notes as $note) :  ?>
             <li>
                 <a href="/note?id=<?= $note['id'] ?>" class="text-blue-900 hover:underline">
-                    <?= $note['body']  ?>
+                    <?= htmlspecialchars($note['body'])  ?>
                 </a>
             </li>
         <?php endforeach;  ?>
+
+        <p class="mt-6">
+            <a href="notes/create" class="text-blue-900">Create Note</a>
+        </p>
+
     </div>
 </main>
 
