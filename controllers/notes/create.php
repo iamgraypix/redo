@@ -1,5 +1,9 @@
 <?php
 
+use Core\Database;
+use Core\Validator;
+use Core\Response;
+
 $config = require base_path('config.php');
 require base_path('Core/Validator.php');
 $db = new Database($config['database']);
@@ -11,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if (!Validator::string($body, 3, 1000)) {
-        http_response_code(400);
+        http_response_code(Response::BAD_REQUEST);
         $errors['body'] = 'A body cannot be more than 1,000 characters is required!';
     }
 
