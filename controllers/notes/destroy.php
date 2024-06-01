@@ -8,11 +8,9 @@ $currentUser = 3;
 
 
 $note = $db->query("SELECT * FROM notes WHERE id = :id", ["id" => $_GET['id']])->findOrFail();
-
 authorize($note['user_id'] === $currentUser);
 
+$db->query("DELETE FROM notes WHERE id = :id", ['id' => $_POST['id']]);
 
-view('notes/show.view.php', [
-    'heading' => 'Note',
-    'note' => $note
-]);
+header('location: /notes');
+die();
