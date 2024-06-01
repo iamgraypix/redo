@@ -3,10 +3,9 @@
 use Core\Database;
 use Core\Validator;
 use Core\Response;
+use Core\App;
 
-$config = require base_path('config.php');
-require base_path('Core/Validator.php');
-$db = new Database($config['database']);
+$db = App::resolve(Database::class);
 
 $body = $_POST['body'];
 $errors = [];
