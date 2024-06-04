@@ -10,15 +10,21 @@ class LoginForm
 
     protected $errors = [];
 
+    public function error($field, $message)
+    {
+        http_response_code(Response::BAD_REQUEST);
+        $this->errors[$field] = $message;
+    }
+
     public function validate($email, $password)
     {
 
         if (!Validator::email($email)) {
-            $this->errors['email'] = 'Please provide a valid email address';
+            $this->error('email', 'Please provide a valid email address');
         }
 
         if (!Validator::string($password)) {
-            $this->errors['password'] = 'Please provide a password';
+            $this->error('password', 'Please provide a password');
         }
 
         return empty($this->errors);
@@ -28,7 +34,6 @@ class LoginForm
     {
         return $this->errors;
     }
-        
-    
+
 
 }
