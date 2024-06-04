@@ -18,3 +18,8 @@ $router->post('/notes', 'controllers/notes/store.php')->only('auth');
 
 $router->get('/register', 'controllers/users/create.php')->only('guest');
 $router->post('/register', 'controllers/users/store.php')->only('guest');
+
+$router->get('/login', 'controllers/auth/create.php')->only('guest');
+$router->post('/login', 'controllers/auth/store.php')->only('guest');
+
+$router->delete('/logout', 'controllers/auth/destroy.php')->only('auth');

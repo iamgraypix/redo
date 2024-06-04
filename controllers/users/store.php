@@ -43,9 +43,7 @@ $db->query("INSERT INTO users (email, password) VALUES(:email, :password)", [
 ]);
 
 // Set session
-$_SESSION['user'] = [
-    'email' => $email
-];
+login($user);
 
 // Redirect
 header('location: /notes');
