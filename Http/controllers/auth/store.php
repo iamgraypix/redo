@@ -3,30 +3,21 @@
 use Core\App;
 use Core\Database;
 use Core\Response;
-use Core\Validator;
+use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Validate
-$errors = [];
-if (!Validator::email($email)) {
-    $errors['email'] = 'Please provide a valid email address';
-}
+$form = new LoginForm();
 
-if (!Validator::string($password)) {
-    $errors['password'] = 'Please provide a password';
-}
-
-if (!empty($errors)) {
+if (! $form->validate($email, $password)){
     http_response_code(Response::BAD_REQUEST);
-    return view('auth/login.view.php', [
-        'errors' => $errors,
+    return view('auth/create.view.php', [
+        'errors' => $form->errors(),
         'email' => $email,
         'password' => $password
     ]);
 }
-
 $db = App::resolve(Database::class);
 
 $user = $db->query("SELECT * FROM users WHERE email = :email", ['email' => $email])->find();
