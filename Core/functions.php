@@ -63,10 +63,10 @@ function redirect($path)
 
 function old($key, $default = '')
 {
-    return Session::get($key) ?? $default;
+    return Session::get('old')[$key] ?? $default;
 }
 
 function errors($field)
 {
-    return Session::get_flash_errors($field);
+    return Session::get('errors')[$field] ?? '';
 }
