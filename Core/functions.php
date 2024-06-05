@@ -46,7 +46,7 @@ function login($user)
     $_SESSION['user'] = [
         'email' => $user['email']
     ];
-    
+
     session_regenerate_id(true);
 }
 
@@ -59,4 +59,14 @@ function redirect($path)
 {
     header("location: {$path}");
     die();
+}
+
+function old($key, $default = '')
+{
+    return Session::get($key) ?? $default;
+}
+
+function errors($field)
+{
+    return Session::get_flash_errors($field);
 }

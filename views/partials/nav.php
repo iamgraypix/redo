@@ -11,7 +11,11 @@
                         <a href="/" class="<?= urlIs('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white';  ?> rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
                         <a href="/about" class="<?= urlIs('/about') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white';  ?> rounded-md px-3 py-2 text-sm font-medium">About</a>
                         <a href="/contact" class="<?= urlIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white';  ?> rounded-md px-3 py-2 text-sm font-medium">Contact</a>
-                        <?php if ($_SESSION['user'] ?? false):  ?>
+                        <?php
+
+                                                    use Core\Session;
+
+ if ($_SESSION['user'] ?? false):  ?>
                         <a href="/notes" class="<?= urlIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white';  ?> rounded-md px-3 py-2 text-sm font-medium">Notes</a>
                         <?php endif;  ?>
                     </div>
@@ -41,13 +45,13 @@
                             </button> -->
                         </div>
                     </div>
-                    <?php if (!$_SESSION['user'] ?? false):  ?>
+                    <?php if (!Session::get('user') ?? false):  ?>
                     <div class="relative ml-3">
                         <a href="/login" class="text-white">Login</a>
                     </div>
                     <?php endif ?>
 
-                    <?php if ($_SESSION['user'] ?? false):  ?>
+                    <?php if (Session::get('user') ?? false):  ?>
                     <div class="relative ml-3">
                         <form method="POST" action="/logout">
                             <input type="hidden" name="_method" value="DELETE">

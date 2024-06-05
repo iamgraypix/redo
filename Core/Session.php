@@ -24,6 +24,16 @@ class Session
         $_SESSION['_flash'][$key] = $value;
     }
 
+    public static function flash_errors($value = [])
+    {
+        static::flash('_errors', $value);
+    }
+
+    public static function get_flash_errors($key, $default = null)
+    {
+        return $_SESSION['_flash']['_errors'][$key] ?? $default;
+    }
+
     public static function unflash()
     {
         unset($_SESSION['_flash']);
