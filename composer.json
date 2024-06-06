@@ -6,7 +6,9 @@
             "email": "charlesartillero@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "illuminate/collections": "^11.10"
+    },
     "autoload": {
         "psr-4": {
             "Core\\": "Core/",
