@@ -1,0 +1,16 @@
+{
+    "name": "charl/redo",
+    "authors": [
+        {
+            "name": "iamgraypix",
+            "email": "charlesartillero@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
