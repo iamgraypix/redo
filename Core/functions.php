@@ -44,6 +44,7 @@ function view($path, $attributes = [])
 function login($user)
 {
     $_SESSION['user'] = [
+        'id' => $user['id'],
         'email' => $user['email']
     ];
 
@@ -66,7 +67,7 @@ function old($key, $default = '')
     return Session::get('old')[$key] ?? $default;
 }
 
-function errors($field)
+function errors($field, $default = '')
 {
-    return Session::get('errors')[$field] ?? '';
+    return Session::get('errors')[$field] ?? $default;
 }

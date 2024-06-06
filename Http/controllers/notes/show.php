@@ -4,8 +4,7 @@ use Core\Database;
 use Core\App;
 
 $db = App::resolve(Database::class);
-$currentUser = 3;
-
+$currentUser = $_SESSION['user']['id']; 
 
 $note = $db->query("SELECT * FROM notes WHERE id = :id", ["id" => $_GET['id']])->findOrFail();
 

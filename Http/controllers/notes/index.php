@@ -6,7 +6,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$notes = $db->query("SELECT * FROM notes WHERE user_id = :user", ["user" => 3])->get();
+$notes = $db->query("SELECT * FROM notes WHERE user_id = :user", ["user" => $_SESSION['user']['id']])->get();
 
 
 view('notes/index.view.php', [
